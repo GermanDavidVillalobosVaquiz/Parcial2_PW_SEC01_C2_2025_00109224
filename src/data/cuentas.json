@@ -1,0 +1,9 @@
+[
+  { "id": "1", "name": "Ana López", "gender": "female", "isActive": true, "balance": 1200.50 },
+  { "id": "2", "name": "Luis Pérez", "gender": "male", "isActive": false, "balance": 350.00 },
+  { "id": "3", "name": "Rocio García", "gender": "female", "isActive": true, "balance": 999.99 },
+  { "id": "4", "name": "Carlos Ruiz", "gender": "male", "isActive": true, "balance": 10.00 },
+  { "id": "5", "name": "Daniela Méndez", "gender": "female", "isActive": false, "balance": 50.00 },
+  { "id": "6", "name": "Diego Mora", "gender": "male", "isActive": true, "balance": 75.25 },
+  { "id": "7", "name": "Fuentes Díaz", "gender": "female", "isActive": true, "balance": 1800.00 }
+]
