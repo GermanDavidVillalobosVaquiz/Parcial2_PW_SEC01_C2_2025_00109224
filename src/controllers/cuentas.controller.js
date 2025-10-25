@@ -20,7 +20,7 @@ function getCuentaById(req, res) {
   });
 }
 
-// GET /cuentasqueryParam=valor
+// GET /cuentas?queryParam=valor
 function searchCuentas(req, res) {
   const { queryParam } = req.query;
 
@@ -63,9 +63,43 @@ function cuentasBalance(req, res) {
   });
 }
 
+// GET /isActive (id=3 opcional)
+function isActiveHandler(req, res) {
+  const { id } = req.query;
+
+  // Caso A: consultar una cuenta específica
+  if (id) {
+    const account = cuentas.find(c => c.id === String(id));
+    if (!account) {
+      return res.status(404).json({
+        message: `No se encontró la cuenta con id ${id}`,
+        finded: false,
+        isActive: null
+      });
+    }
+    return res.status(200).json({
+      message: `La cuenta con id ${id} está ${account.isActive ? 'activa' : 'inactiva'}`,
+      finded: true,
+      isActive: account.isActive,
+      account
+    });
+  }
+
+  // Caso B: sin id → hay alguna cuenta activa?
+  const activas = cuentas.filter(c => c.isActive === true);
+  const anyActive = activas.length > 0;
+
+  return res.status(200).json({
+    message: anyActive ? "Existen cuentas activas" : "No hay cuentas activas",
+    anyActive,
+    activeCount: activas.length
+  });
+}
+
 module.exports = {
   listCuentas,
   getCuentaById,
   searchCuentas,
-  cuentasBalance
+  cuentasBalance,
+  isActiveHandler
 };
